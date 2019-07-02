@@ -7,5 +7,4 @@ import org.webproject.entity.CharacterEntity;
 @Repository
 public interface CharactersRepository extends CrudRepository<CharacterEntity, Integer> {
 
-
 }

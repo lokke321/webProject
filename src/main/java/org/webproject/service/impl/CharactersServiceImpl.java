@@ -3,7 +3,7 @@ package org.webproject.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.webproject.dto.Character;
+import org.webproject.dto.Char;
 import org.webproject.entity.CharacterEntity;
 import org.webproject.repository.CharactersRepository;
 import org.webproject.service.AuthenticationService;
@@ -33,11 +33,10 @@ public class CharactersServiceImpl implements CharactersService {
     }
 
     @Override
-    public Collection<Character> getAll() {
-
+    public Collection<Char> getAll() {
         Iterable<CharacterEntity> iterable = charactersRepository.findAll();
         return StreamSupport.stream(iterable.spliterator(), false)
-                .map(entity -> modelMapper.map(entity, Character.class))
+                .map(entity -> modelMapper.map(entity, Char.class))
                 .collect(Collectors.toList());
     }
 }

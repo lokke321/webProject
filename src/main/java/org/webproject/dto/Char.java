@@ -8,11 +8,13 @@ import lombok.Setter;
 @Setter
 @Getter
 
-public class Character {
+public class Char {
+
     private Integer id;
     private String name;
     private String hp;
     private String dmg;
+
 
 
 }

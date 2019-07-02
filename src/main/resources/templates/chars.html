@@ -7,30 +7,21 @@
 
 <table>
     <thead>
-
-    <div>
-        <b>Квест</b><br>
-        <i>Выберете персонажа</i>
-    </div>
-
     <tr>
         <th>ID</th>
         <th>Класс</th>
         <th>Здоровье</th>
         <th>Урон</th>
-
     </tr>
     </thead>
     <tbody>
-    <tr th:each="сhar : ${сhar}">
-        <td th:text="${сhar.id}"></td>
-        <td th:text="${сhar.name}"></td>
-        <td th:text="${сhar.hp}"></td>
-        <td th:text="${сhar.dmg}"></td>
+    <tr th:each="char : ${users}">
+        <td th:text="${char.id}"></td>
+        <td th:text="${char.name}"></td>
+        <td th:text="${char.hp}"></td>
+        <td th:text="${char.dmg}"></td>
     </tr>
     </tbody>
 </table>
 
 </body>
-
-</html>

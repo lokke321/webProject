@@ -50,7 +50,7 @@ public class AuthorizationController {
     UserSession session = authSessionService.createOrUpdateSession(request.getLogin());
         response.addCookie(new Cookie("WC_SESSION", session.getSid()));
 
-        return "redirect:/char";
+        return "redirect:/chars";
 
 }
 }
