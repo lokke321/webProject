@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="../static/lib/bootstrap-reboot.min.css" th:href="@{/lib/bootstrap-reboot.min.css}" rel="stylesheet" />
+    <link href="../static/lib/bootstrap.min.css" th:href="@{/lib/bootstrap.min.css}" rel="stylesheet" />
+    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
+
+    <style>
+   body {
+    background: #c7b39b url(euroliga.jpg);
+    color: #fff;
+    background-repeat: no-repeat;
+   }
+  </style>
+
+</head>
+
+<body style="background-image:url(euroliga.jpg)">
+
+<div align="right" >
+
+    <form action="/registry" method="get">
+        <button class="btn btn-outline-primary">Регистрация</button>
+    </form>
+
+</div>
+
+
+
+
+
+<div class="content">
+
+    <form class="wc-form wc-middle" action="/mainpage" method="post" th:object="${request}">
+
+        <div  class="form-group">
+            <h2 style="color:#bcd2ea;">Квест "Какое-то классное название ;Р"</h2>
+        </div>
+
+        <div class="form-group" >
+            <label style="color:#bcd2ea;" for="login" >Login</label>
+            <input id="login" name="login" class="form-control" th:value="${request.login}" />
+        </div>
+
+        <div class="form-group">
+            <label for="password" style="color:#bcd2ea;" >Password</label>
+            <input id="password" type="password" name="password" class="form-control" />
+        </div>
+
+        <div class="form-group" th:if="${#fields.hasErrors('login')}">
+            Invalid login or password
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary">Login</button>
+
+        </form>
+
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
