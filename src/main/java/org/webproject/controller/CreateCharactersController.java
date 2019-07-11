@@ -5,20 +5,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.webproject.dto.Char;
+import org.webproject.repository.UsersCharRepository;
 import org.webproject.service.CharactersService;
 import org.webproject.service.CreateUserCharService;
 
+
+
 @Controller
-public class CharactersController {
+public class CreateCharactersController {
     private final CharactersService charactersService;
     private final CreateUserCharService createUserCharService;
+    private final UsersCharRepository usersCharRepository;
 
     @Autowired
-    public CharactersController(CharactersService charactersService, CreateUserCharService createUserCharService) {
+    public CreateCharactersController(CharactersService charactersService, CreateUserCharService createUserCharService, UsersCharRepository usersCharRepository) {
         this.charactersService = charactersService;
         this.createUserCharService = createUserCharService;
 
+        this.usersCharRepository = usersCharRepository;
     }
 
     @GetMapping("/chars")
@@ -27,21 +31,15 @@ public class CharactersController {
         return "chars";
     }
 
-    @PostMapping("/saveChars")
+    @PostMapping("/chars")
     public String saveUserChar (@CookieValue("WC_SESSION") final String sid,
                                 @RequestParam("charName") final String charname,
-                                @RequestParam("charId") final Integer charsId,
-                                Model model){
+                                @RequestParam("charId") final Integer charsId)
+    {
 
+        boolean result = createUserCharService.createUserChar(charsId, sid, charname);
+        return result ? "redirect:/userchars" : "chars";
 
-//    model.addAttribute("users", character);
-//    Integer charsId = character.getId();
- //     Integer charsId = 1;
-
-  //  String charName = "Имя";
-
-        Boolean result = createUserCharService.createUserChar(charsId, sid, charname);
-        return result ? "redirect:/startgame" : "chars";
     }
 
     }

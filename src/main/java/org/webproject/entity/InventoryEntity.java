@@ -18,8 +18,13 @@ public class InventoryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_items")
-    private ItemEntity itemId;
+    @OneToOne
+    @JoinColumn(name = "char_id")
+    private UsersCharEntity charId;
+
+    public InventoryEntity (UsersCharEntity charId){
+        this.charId = charId;
+    }
+
 
     }

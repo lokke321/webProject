@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "items")
+@Entity(name = "game_items")
 public class ItemEntity {
 
     @Id

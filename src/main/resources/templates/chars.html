@@ -20,9 +20,9 @@
 <div>
 <ul th:each="char : ${users}">
 
-<form  class="Divwidth"  action="/saveChars" method="post" th:object="${char}">
-    <h2>TEST</h2>
-    <p th:text="${char.name}"></p>
+<form  class="Divwidth"  action="/chars" method="post" th:object="${char}">
+    <h2 th:text="${char.name}"></h2>
+    <!--<p th:text="${char.name}"></p>-->
 
     <label type="hidden" for="charId"></label>
     <input  type="hidden" id="charId" name="charId" th:value="${char.id}" />

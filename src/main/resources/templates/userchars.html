@@ -1,0 +1,58 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../static/lib/bootstrap-reboot.min.css" th:href="@{/lib/bootstrap-reboot.min.css}" rel="stylesheet" />
+    <link href="../static/lib/bootstrap.min.css" th:href="@{/lib/bootstrap.min.css}" rel="stylesheet" />
+    <link href="../static/css/char.css" th:href="@{/css/char.css}" rel="stylesheet" />
+    <link href="../static/img/bonfire.jpg" />
+
+</head>
+
+
+<body>
+
+<div>
+    <form action="/chars" method="get">
+        <button class="btn btn-outline-primary">Создать персонажа</button>
+    </form>
+
+    <form align="right" action="/logout" method="get">
+        <button class="btn btn-outline-primary">Выход</button>
+    </form>
+    
+</div>
+
+<div>
+    <table>
+        <thead>
+        <h1>Мои персонажи</h1>
+        <tr>
+            <th>Класс</th>
+            <th>Имя</th>
+            <th>Здоровье</th>
+            <th>Урон</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form>
+        <tr th:each="char : ${users}">
+            <td th:text="${char.charclass}"></td>
+            <td th:text="${char.charname}"></td>
+            <td th:text="${char.hpchar}"></td>
+            <td th:text="${char.dmgchar}"></td>
+
+            <td>
+            <label type="hidden" for="charId"></label>
+            <input  type="hidden" id="charId" name="charId" th:value="${char.id}" />
+
+            <button type="submit" class="btn btn-outline-primary">Выбрать</button>
+            </td>
+        </tr>
+        </form>
+        </tbody>
+    </table>
+</div>
+
+</body>

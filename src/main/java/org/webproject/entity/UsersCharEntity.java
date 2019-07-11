@@ -1,9 +1,6 @@
 package org.webproject.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -30,12 +27,19 @@ public class UsersCharEntity {
     @JoinColumn(name = "users_id")
     private UserEntity user;
 
-    @OneToOne
-    @JoinColumn(name = "inventary_id")
-    private InventoryEntity inventory;
-
     private String charclass;
     private Integer hpchar;
     private Integer dmgchar;
+
+
+    public UsersCharEntity (String charname, CharacterEntity character, UserEntity user,  String charclass, Integer hpchar, Integer dmgchar){
+        this.charname = charname;
+        this.character = character;
+        this.user = user;
+        this.charclass = charclass;
+        this.hpchar = hpchar;
+        this.dmgchar = dmgchar;
+
+    }
 
 }

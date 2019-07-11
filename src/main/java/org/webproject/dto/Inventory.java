@@ -9,7 +9,7 @@ import lombok.Setter;
 public class Inventory {
 
     Integer id;
-    Integer itemId;
+    Integer charId;
 
 
 }
