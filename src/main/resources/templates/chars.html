@@ -2,26 +2,34 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../static/lib/bootstrap-reboot.min.css" th:href="@{/lib/bootstrap-reboot.min.css}" rel="stylesheet" />
+    <link href="../static/lib/bootstrap.min.css" th:href="@{/lib/bootstrap.min.css}" rel="stylesheet" />
+    <link href="../static/css/char.css" th:href="@{/css/char.css}" rel="stylesheet" />
+    <link href="../static/img/bonfire.jpg" />
+
+</head>
+
 
 <body>
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Класс</th>
-        <th>Здоровье</th>
-        <th>Урон</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="char : ${users}">
-        <td th:text="${char.id}"></td>
-        <td th:text="${char.name}"></td>
-        <td th:text="${char.hp}"></td>
-        <td th:text="${char.dmg}"></td>
-    </tr>
-    </tbody>
-</table>
+<div>
+<h2>Кто ты?</h2>
+</div>
+
+<div>
+<ul th:each="char : ${users}">
+
+<form  class="Divwidth"  action="/addUserChar" method="post" th:object="${char}">
+    <h2>TEST</h2>
+    <p th:text="${char.name}"></p>
+
+    <label type="hidden" for="char"></label>
+    <input type="hidden" id="char" name="char" th:value="${char.name}" />
+
+    <button type="submit" class="btn btn-outline-primary">Выбрать</button>
+    </form>
+</ul>
+</div>
 
 </body>

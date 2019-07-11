@@ -19,14 +19,14 @@ public class CharacterEntity {
     private Integer id;
 
     private String name;
-    private String hp;
-    private String dmg;
+    private Integer hp;
+    private Integer dmg;
 
     public CharacterEntity (Integer id) {
         this.id = id;
     }
 
-    public CharacterEntity (Integer id, String name, String hp, String dmg){
+    public CharacterEntity (Integer id, String name, Integer hp, Integer dmg){
         this.id = id;
         this.name = name;
         this.hp = hp;

@@ -2,20 +2,21 @@
 create table if not exists users (
 	id serial primary key,
 	login varchar(20) not null unique,
-	password varchar(100) not null
-);
+	password varchar(100) not null,
+	);
 
 
 insert into users (login, password)
 values
        ('user', 'password'),
-       ('admin', 'admin_password');
+       ('admin', 'admin_password'),
+       ('login', 'password');
 
 create table if not exists сharacters (
 	id serial primary key,
 	name varchar(100) not null unique,
-	hp varchar not null,
-	dmg varchar  not null
+	hp integer not null,
+	dmg integer  not null
 	);
 
 create table if not exists auth_sessions (
@@ -27,8 +28,8 @@ create table if not exists auth_sessions (
 
 
 insert into сharacters (name, hp, dmg) values
-('Человек-Воин','120','20'),
-('Эльф-Маг','80','35'),
-('Дворф-Паладин','120','20'),
-('Таурен-Друид','100','30'),
-('Гоблин-Шаман','100','30')
+('Человек-Воин',120,20),
+('Эльф-Маг',80,35),
+('Дворф-Паладин',120,20),
+('Таурен-Друид',100,30),
+('Гоблин-Шаман',100,30);

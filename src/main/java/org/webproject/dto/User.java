@@ -10,4 +10,12 @@ public class User {
     private Integer id;
     private  String login;
     private String password;
-}
+
+
+    User (String login) {
+        this.login = login;
+    }
+
+    }
+
+

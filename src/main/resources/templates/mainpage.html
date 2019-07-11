@@ -2,31 +2,28 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
+    <link href="../static/img/bonfire.jpg" />
+
     <link href="../static/lib/bootstrap-reboot.min.css" th:href="@{/lib/bootstrap-reboot.min.css}" rel="stylesheet" />
     <link href="../static/lib/bootstrap.min.css" th:href="@{/lib/bootstrap.min.css}" rel="stylesheet" />
-    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
 
-    <style>
-   body {
-    background: #c7b39b url(euroliga.jpg);
-    color: #fff;
-    background-repeat: no-repeat;
-   }
-  </style>
 
 </head>
 
-<body style="background-image:url(euroliga.jpg)">
+<body>
 
-<div align="right" >
+    <div align="right" >
 
     <form action="/registry" method="get">
         <button class="btn btn-outline-primary">Регистрация</button>
     </form>
 
-</div>
+        <form action="/logout" method="get">
+            <button class="btn btn-outline-primary">Выход</button>
+        </form>
 
-
+    </div>
 
 
 

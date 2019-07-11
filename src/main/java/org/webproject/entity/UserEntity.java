@@ -27,4 +27,9 @@ public class UserEntity {
         this.password = password;
     }
 
+    public UserEntity(String login) {
+        this.login = login;
+
+    }
+
 }

@@ -1,3 +1,22 @@
+body {
+        display: visible;
+        background-color: #31415b;
+
+        background-image:url('../img/bonfire.jpg');
+
+        background-repeat: no-repeat;
+        background-size: 130%;
+
+        }
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
 .wc-form {
     width: 500px;
     }
@@ -8,3 +27,5 @@
     align-items: center;
     height: 100%;
 }
+
+

@@ -2,15 +2,16 @@ package org.webproject.service.impl;
 
 
 
+import org.springframework.web.bind.annotation.CookieValue;
 import org.webproject.dto.UserSession;
 import org.webproject.entity.AuthSessionEntity;
 import org.webproject.entity.UserEntity;
+import org.webproject.exeption.ChatException;
 import org.webproject.repository.AuthorizationSessionRepository;
 import org.webproject.repository.UserRepository;
 import org.webproject.service.AuthorizationSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.webproject.service.UserService;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -20,12 +21,15 @@ public class AuthorizationSessionServiceImpl implements AuthorizationSessionServ
 
     private final UserRepository userRepository;
     private final AuthorizationSessionRepository authSessionRepository;
-
+    private final AuthorizationSessionRepository authorizationSessionRepository;
+    private final AuthorizationSessionService authSessionService;
     @Autowired
     public AuthorizationSessionServiceImpl(UserRepository userRepository,
-                                           AuthorizationSessionRepository authSessionRepository) {
+                                           AuthorizationSessionRepository authSessionRepository, AuthorizationSessionRepository authorizationSessionRepository, AuthorizationSessionService authSessionService) {
         this.userRepository = userRepository;
         this.authSessionRepository = authSessionRepository;
+        this.authorizationSessionRepository = authorizationSessionRepository;
+        this.authSessionService = authSessionService;
     }
 
 
@@ -67,4 +71,26 @@ public class AuthorizationSessionServiceImpl implements AuthorizationSessionServ
                 .orElse(true);  // if session - null
     }
 
-}
+    @Override
+    public String findLoginBySessionId(String sid) {
+        return authSessionRepository.findBySid(sid)
+                .map(entity -> entity.getUser().getLogin())
+                .orElseThrow(ChatException::new);
+    }
+
+    @Override
+    public void removeSession(String sid) {
+        authSessionRepository.deleteById(sid);
+    }
+
+
+    public Integer getUserId(@CookieValue("WC_SESSION") final String sid) {
+        String loginBySessionId = authSessionService.findLoginBySessionId(sid);
+        UserEntity userEntity = userRepository.findByLogin(loginBySessionId);
+        Integer userId = userEntity.getId();
+        return userId;
+    }
+
+
+
+    }

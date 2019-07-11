@@ -27,7 +27,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
         if(entity == null){
 
-           UserEntity newUser = userRepository.save(new UserEntity(login, password));
+            UserEntity newUser = userRepository.save(new UserEntity(login, password));
 
          return true;
 

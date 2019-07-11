@@ -1,4 +1,4 @@
-package org.webproject;
+package org.webproject.exeption;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

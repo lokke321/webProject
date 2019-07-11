@@ -17,7 +17,11 @@ public interface AuthorizationSessionRepository extends CrudRepository<AuthSessi
                     "where u.login = :login",
             nativeQuery = true
     )
+
     Optional<AuthSessionEntity> findByLogin(@Param("login") String login);
+
+    Optional<AuthSessionEntity> findBySid(String sid);
+
 
     // Optional<AuthSessionEntity> findByUser_Login(String login);
 

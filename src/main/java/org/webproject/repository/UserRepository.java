@@ -8,4 +8,5 @@ import org.webproject.entity.UserEntity;
 public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 
     UserEntity findByLogin(String login);
+
     }

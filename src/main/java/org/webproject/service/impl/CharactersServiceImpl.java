@@ -19,12 +19,15 @@ public class CharactersServiceImpl implements CharactersService {
     private final CharactersRepository charactersRepository;
     private final ModelMapper modelMapper;
     private final AuthenticationService authenticationService;
+    private final CharactersService charactersService;
+
 
     @Autowired
-    public CharactersServiceImpl(CharactersRepository charactersRepository, ModelMapper modelMapper, AuthenticationService authenticationService){
+    public CharactersServiceImpl(CharactersRepository charactersRepository, ModelMapper modelMapper, AuthenticationService authenticationService, CharactersService charactersService){
         this.charactersRepository = charactersRepository;
         this.modelMapper = modelMapper;
         this.authenticationService = authenticationService;
+        this.charactersService = charactersService;
     }
 
     @Override
@@ -35,6 +38,15 @@ public class CharactersServiceImpl implements CharactersService {
     @Override
     public Collection<Char> getAll() {
         Iterable<CharacterEntity> iterable = charactersRepository.findAll();
+        return StreamSupport.stream(iterable.spliterator(), false)
+                .map(entity -> modelMapper.map(entity, Char.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<Char> getCharByCharClass(String name) {
+        Iterable<Char> iterable = charactersService.getCharByCharClass(name);
+
         return StreamSupport.stream(iterable.spliterator(), false)
                 .map(entity -> modelMapper.map(entity, Char.class))
                 .collect(Collectors.toList());

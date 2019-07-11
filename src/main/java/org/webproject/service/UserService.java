@@ -10,4 +10,4 @@ public interface UserService {
 
     Collection<User> getAll();
 
-}
+ }

@@ -12,9 +12,8 @@ public class Char {
 
     private Integer id;
     private String name;
-    private String hp;
-    private String dmg;
-
+    private Integer hp;
+    private Integer dmg;
 
 
 }
