@@ -7,5 +7,5 @@ import org.webproject.entity.InventoryEntity;
 @Repository
 public interface InventoryRepository extends CrudRepository<InventoryEntity, Integer> {
 
-    InventoryEntity findById();
+    //InventoryEntity findById();
 }

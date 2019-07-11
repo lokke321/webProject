@@ -4,21 +4,21 @@ package org.webproject.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.webproject.dto.Char;
 import org.webproject.service.CharactersService;
-import org.webproject.service.UserService;
+import org.webproject.service.CreateUserCharService;
 
 @Controller
 public class CharactersController {
-    private final UserService userService;
     private final CharactersService charactersService;
+    private final CreateUserCharService createUserCharService;
 
     @Autowired
-    public CharactersController(UserService userService, CharactersService charactersService) {
-        this.userService = userService;
+    public CharactersController(CharactersService charactersService, CreateUserCharService createUserCharService) {
         this.charactersService = charactersService;
+        this.createUserCharService = createUserCharService;
+
     }
 
     @GetMapping("/chars")
@@ -27,19 +27,22 @@ public class CharactersController {
         return "chars";
     }
 
-    @PostMapping("/registry")
-    public String registr (@RequestParam("login") final String login,
-                           @RequestParam("password")final String password){
+    @PostMapping("/saveChars")
+    public String saveUserChar (@CookieValue("WC_SESSION") final String sid,
+                                @RequestParam("charName") final String charname,
+                                @RequestParam("charId") final Integer charsId,
+                                Model model){
 
 
+//    model.addAttribute("users", character);
+//    Integer charsId = character.getId();
+ //     Integer charsId = 1;
 
-        return result ? "redirect:/mainpage" : "registry";
+  //  String charName = "Имя";
+
+        Boolean result = createUserCharService.createUserChar(charsId, sid, charname);
+        return result ? "redirect:/startgame" : "chars";
     }
-
-
-
-
-
 
     }
 

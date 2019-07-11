@@ -35,4 +35,9 @@ public class CharacterEntity {
     }
 
     public CharacterEntity(){}
+
+    public CharacterEntity(Integer id, String name){
+        this.id = id;
+        this.name = name;
+    }
 }

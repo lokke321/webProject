@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.webproject.dto.Char;
 import org.webproject.entity.CharacterEntity;
 import org.webproject.repository.CharactersRepository;
-import org.webproject.service.AuthenticationService;
 import org.webproject.service.CharactersService;
 
 import java.util.Collection;
@@ -18,37 +17,20 @@ public class CharactersServiceImpl implements CharactersService {
 
     private final CharactersRepository charactersRepository;
     private final ModelMapper modelMapper;
-    private final AuthenticationService authenticationService;
-    private final CharactersService charactersService;
-
 
     @Autowired
-    public CharactersServiceImpl(CharactersRepository charactersRepository, ModelMapper modelMapper, AuthenticationService authenticationService, CharactersService charactersService){
+    public CharactersServiceImpl(CharactersRepository charactersRepository, ModelMapper modelMapper){
         this.charactersRepository = charactersRepository;
         this.modelMapper = modelMapper;
-        this.authenticationService = authenticationService;
-        this.charactersService = charactersService;
     }
 
-    @Override
-    public boolean auth(String login, String password) {
-        return authenticationService.authenticate(login, password);
-    }
-
-    @Override
+     @Override
     public Collection<Char> getAll() {
         Iterable<CharacterEntity> iterable = charactersRepository.findAll();
         return StreamSupport.stream(iterable.spliterator(), false)
                 .map(entity -> modelMapper.map(entity, Char.class))
                 .collect(Collectors.toList());
-    }
+          }
+   }
 
-    @Override
-    public Collection<Char> getCharByCharClass(String name) {
-        Iterable<Char> iterable = charactersService.getCharByCharClass(name);
 
-        return StreamSupport.stream(iterable.spliterator(), false)
-                .map(entity -> modelMapper.map(entity, Char.class))
-                .collect(Collectors.toList());
-    }
-}

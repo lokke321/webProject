@@ -22,7 +22,7 @@ public class UsersCharEntity {
 
     private String charname;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "char_id")
     private CharacterEntity character;
 
@@ -30,7 +30,7 @@ public class UsersCharEntity {
     @JoinColumn(name = "users_id")
     private UserEntity user;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "inventary_id")
     private InventoryEntity inventory;
 

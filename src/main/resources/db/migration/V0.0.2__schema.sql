@@ -19,7 +19,7 @@ create table if not exists inventories (
 
 create table if not exists users_char (
 	id serial primary key,
-	charname varchar(100) not null,
+	charname varchar(100) not null unique,
 
 	char_id integer not null,
 	users_id integer not null,

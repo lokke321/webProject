@@ -20,12 +20,15 @@
 <div>
 <ul th:each="char : ${users}">
 
-<form  class="Divwidth"  action="/addUserChar" method="post" th:object="${char}">
+<form  class="Divwidth"  action="/saveChars" method="post" th:object="${char}">
     <h2>TEST</h2>
     <p th:text="${char.name}"></p>
 
-    <label type="hidden" for="char"></label>
-    <input type="hidden" id="char" name="char" th:value="${char.name}" />
+    <label type="hidden" for="charId"></label>
+    <input  type="hidden" id="charId" name="charId" th:value="${char.id}" />
+
+    <label for="charName">Ваше Имя</label>
+    <input id="charName"  name="charName" />
 
     <button type="submit" class="btn btn-outline-primary">Выбрать</button>
     </form>

@@ -8,6 +8,5 @@ import org.webproject.entity.CharacterEntity;
 public interface CharactersRepository extends CrudRepository<CharacterEntity, Integer> {
 
     CharacterEntity findNameById(Integer id);
-    CharacterEntity findByName(String name);
 
 }

@@ -7,6 +7,6 @@ import org.webproject.entity.UsersCharEntity;
 @Repository
 public interface UsersCharRepository extends CrudRepository <UsersCharEntity, Integer> {
 
-    UsersCharEntity findByCharClass(String charname);
-    UsersCharEntity findById();
+    UsersCharEntity findBycharclass(String charname);
+   // UsersCharEntity findById();
 }

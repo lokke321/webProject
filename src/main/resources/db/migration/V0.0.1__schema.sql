@@ -2,8 +2,8 @@
 create table if not exists users (
 	id serial primary key,
 	login varchar(20) not null unique,
-	password varchar(100) not null,
-	);
+	password varchar(100) not null
+		);
 
 
 insert into users (login, password)

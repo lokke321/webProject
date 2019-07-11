@@ -9,7 +9,7 @@ import org.webproject.service.CreateUserCharService;
 
 
 @Service
-public class CreateCharServiceImpl implements CreateUserCharService {
+public class CreateUserCharServiceImpl implements CreateUserCharService {
 
     private final UserRepository userRepository;
     private final CharactersRepository charactersRepository;
@@ -18,7 +18,7 @@ public class CreateCharServiceImpl implements CreateUserCharService {
     private final AuthorizationSessionService authSessionService;
 
     @Autowired
-    public CreateCharServiceImpl(UserRepository userRepository, CharactersRepository charactersRepository, UsersCharRepository usersCharRepository, InventoryRepository inventoryRepository, AuthorizationSessionRepository authorizationSessionRepository, AuthorizationSessionRepository authSessionRepository, AuthorizationSessionServiceImpl authorizationSessionServiceImpl, AuthorizationSessionService authorizationSessionService, AuthorizationSessionService authSessionService) {
+    public CreateUserCharServiceImpl(UserRepository userRepository, CharactersRepository charactersRepository, UsersCharRepository usersCharRepository, InventoryRepository inventoryRepository,  AuthorizationSessionService authSessionService) {
         this.userRepository = userRepository;
         this.charactersRepository = charactersRepository;
         this.usersCharRepository = usersCharRepository;
@@ -52,6 +52,8 @@ public class CreateCharServiceImpl implements CreateUserCharService {
             saveUserCharEntity.setInventory(createInventory);
             saveUserCharEntity.setCharname(charname);
             saveUserCharEntity.setUser(userEntity);
+
+            return true;
         }
 
         return false;

@@ -11,8 +11,12 @@ public interface AuthorizationSessionService {
 
     String findLoginBySessionId(String sid);
 
+    Integer findUserIdBySessionId(String sid);
+
     void removeSession(String sid);
 
-    Integer getUserId (String sid);
+    String getAuthenticatedUser();
+
+    void setAuthenticatedUser(String login);
 
 }

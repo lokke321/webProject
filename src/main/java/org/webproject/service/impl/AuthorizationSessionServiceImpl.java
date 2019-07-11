@@ -19,50 +19,45 @@ import java.util.Optional;
 @Service
 public class AuthorizationSessionServiceImpl implements AuthorizationSessionService {
 
+    // HashMap<Thread, String>
+    //
+    private ThreadLocal<String> authenticatedUser = new ThreadLocal<>();
+
     private final UserRepository userRepository;
     private final AuthorizationSessionRepository authSessionRepository;
-    private final AuthorizationSessionRepository authorizationSessionRepository;
-    private final AuthorizationSessionService authSessionService;
+
     @Autowired
     public AuthorizationSessionServiceImpl(UserRepository userRepository,
-                                           AuthorizationSessionRepository authSessionRepository, AuthorizationSessionRepository authorizationSessionRepository, AuthorizationSessionService authSessionService) {
+                                           AuthorizationSessionRepository authSessionRepository) {
         this.userRepository = userRepository;
         this.authSessionRepository = authSessionRepository;
-        this.authorizationSessionRepository = authorizationSessionRepository;
-        this.authSessionService = authSessionService;
     }
-
 
     @Override
     public UserSession createOrUpdateSession(String login) {
-         UserEntity user = userRepository.findByLogin(login);
-            if (user == null) {
-                throw new RuntimeException();
-            }
+        UserEntity user = userRepository.findByLogin(login);
+        if (user == null) {
+            throw new RuntimeException();
+        }
 
-            Optional<AuthSessionEntity> possibleSession = authSessionRepository.findByLogin(login);
-            LocalDateTime expiredDate = LocalDateTime.now().plusDays(1);
+        Optional<AuthSessionEntity> possibleSession = authSessionRepository.findByLogin(login);
+        LocalDateTime expiredDate = LocalDateTime.now().plusDays(1);
 
-            if (possibleSession.isPresent()) {
-                AuthSessionEntity entity = possibleSession.get();
-                entity.setExpiredDate(expiredDate);
-                authSessionRepository.save(entity);
-
-                return new UserSession(entity.getSid(), expiredDate, entity.getUser().getLogin());
-            }
-
-            AuthSessionEntity entity = new AuthSessionEntity();
-            entity.setUser(user);
+        if (possibleSession.isPresent()) {
+            AuthSessionEntity entity = possibleSession.get();
             entity.setExpiredDate(expiredDate);
             authSessionRepository.save(entity);
 
             return new UserSession(entity.getSid(), expiredDate, entity.getUser().getLogin());
         }
 
+        AuthSessionEntity entity = new AuthSessionEntity();
+        entity.setUser(user);
+        entity.setExpiredDate(expiredDate);
+        authSessionRepository.save(entity);
 
-
-
-
+        return new UserSession(entity.getSid(), expiredDate, entity.getUser().getLogin());
+    }
 
     @Override
     public boolean isExpired(String sid) {
@@ -79,18 +74,25 @@ public class AuthorizationSessionServiceImpl implements AuthorizationSessionServ
     }
 
     @Override
+    public Integer findUserIdBySessionId(String sid) {
+        return authSessionRepository.findBySid(sid)
+                .map(entity -> entity.getUser().getId())
+                .orElseThrow(ChatException::new);
+    }
+
+    @Override
     public void removeSession(String sid) {
         authSessionRepository.deleteById(sid);
     }
 
-
-    public Integer getUserId(@CookieValue("WC_SESSION") final String sid) {
-        String loginBySessionId = authSessionService.findLoginBySessionId(sid);
-        UserEntity userEntity = userRepository.findByLogin(loginBySessionId);
-        Integer userId = userEntity.getId();
-        return userId;
+    @Override
+    public String getAuthenticatedUser() {
+        return authenticatedUser.get();
     }
 
-
-
+    @Override
+    public void setAuthenticatedUser(String login) {
+        authenticatedUser.set(login);
     }
+
+}
