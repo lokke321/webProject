@@ -1,6 +1,7 @@
 package org.webproject.configuration;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -9,6 +10,9 @@ import org.webproject.interceptor.CookieSessionInterceptor;
 
 @Configuration
 public class MvcConfiguration implements WebMvcConfigurer {
+
+    @Value("${web.chat.attachment.avatars}")
+    private String avatarPath;
 
     @Bean
     public ModelMapper modelMapper() {

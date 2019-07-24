@@ -17,7 +17,7 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class AllCharByUserImpl implements AllCharByUser {
- private final  AuthorizationSessionService authSessionService;
+ private final AuthorizationSessionService authSessionService;
  private final UserRepository userRepository;
  private final UsersCharRepository usersCharRepository;
  private final ModelMapper modelMapper;

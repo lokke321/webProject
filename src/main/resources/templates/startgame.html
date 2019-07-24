@@ -4,14 +4,34 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <link href="../static/lib/bootstrap-reboot.min.css" th:href="@{/lib/bootstrap-reboot.min.css}" rel="stylesheet" />
+    <link href="../static/lib/bootstrap.min.css" th:href="@{/lib/bootstrap.min.css}" rel="stylesheet" />
+    <link href="../static/css/startgame.css" th:href="@{/css/startgame.css}" rel="stylesheet" />
+    <link href="../static/img/bonfire.jpg" />
 </head>
 
 
-
 <body>
+<ul th:each="npc : ${npcs}">
+<div class="Divwidth">
+    Текст <div th:text="${npc.name}"></div>
+</div>
+<div class="content">
 
-Наконец-то!
+    <div class="DivFlex">
+                <div class="Divwidth1">
+                Ответы
+                </div>
+                <div class="Divwidth2">
+                    КАРТИНКА
+                    <img src="@/attachment/avatars/elf_start_game.jpg">
+                    <div th:text="${npc.avatarNpcPath}"></div>
 
+                </div>
+    </div>
+</div>
+
+</ul>
 </body>
 
 </html>

@@ -3,7 +3,6 @@ package org.webproject.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.webproject.entity.*;
-import org.webproject.exeption.ChatException;
 import org.webproject.repository.*;
 import org.webproject.service.AuthorizationSessionService;
 import org.webproject.service.CreateUserCharService;
@@ -17,14 +16,16 @@ public class CreateUserCharServiceImpl implements CreateUserCharService {
     private final UsersCharRepository usersCharRepository;
     private final InventoryRepository inventoryRepository;
     private final AuthorizationSessionService authSessionService;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public CreateUserCharServiceImpl(UserRepository userRepository, CharactersRepository charactersRepository, UsersCharRepository usersCharRepository, InventoryRepository inventoryRepository,  AuthorizationSessionService authSessionService) {
+    public CreateUserCharServiceImpl(UserRepository userRepository, CharactersRepository charactersRepository, UsersCharRepository usersCharRepository, InventoryRepository inventoryRepository, AuthorizationSessionService authSessionService, ItemRepository itemRepository) {
         this.userRepository = userRepository;
         this.charactersRepository = charactersRepository;
         this.usersCharRepository = usersCharRepository;
         this.inventoryRepository = inventoryRepository;
         this.authSessionService = authSessionService;
+        this.itemRepository = itemRepository;
     }
 
     @Override
@@ -52,5 +53,22 @@ public class CreateUserCharServiceImpl implements CreateUserCharService {
     }
 
 
- }
+
+    @Override
+    public boolean deleteUserChar(String charname) {
+
+       UsersCharEntity usersCharEntity = usersCharRepository.findByCharname(charname);
+
+       InventoryEntity inventoryEntity = inventoryRepository.findByCharId(usersCharEntity);
+
+       //TODO: Добавить удаление item с текущего inventary
+
+       inventoryRepository.delete(inventoryEntity);
+       usersCharRepository.delete(usersCharEntity);
+
+       return true;
+    }
+
+
+}
 

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.webproject.entity.UsersCharEntity;
 import org.webproject.repository.UsersCharRepository;
 import org.webproject.service.CharactersService;
 import org.webproject.service.CreateUserCharService;
@@ -37,10 +38,15 @@ public class CreateCharactersController {
                                 @RequestParam("charId") final Integer charsId)
     {
 
-        boolean result = createUserCharService.createUserChar(charsId, sid, charname);
-        return result ? "redirect:/userchars" : "chars";
+       UsersCharEntity usersCharEntity = usersCharRepository.findByCharname(charname);
 
+       if (usersCharEntity == null) {
+           boolean result = createUserCharService.createUserChar(charsId, sid, charname);
+           return "redirect:/userchars";
+       }
+       else return "redirect:/chars";
     }
+
 
     }
 

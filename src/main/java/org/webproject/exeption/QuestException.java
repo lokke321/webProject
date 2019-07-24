@@ -4,13 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class ChatException extends RuntimeException {
+public class QuestException extends RuntimeException {
 
-    public ChatException() {
+    public QuestException() {
         super();
     }
 
-    public ChatException(String message) {
+    public QuestException(String message) {
         super(message);
     }
 

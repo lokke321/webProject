@@ -13,9 +13,7 @@ body {
      color: #f5f5f5;
      }
 
-h {
-color: #f5f5f5;
-}
+
 
 p {
      color: #f5f5f5;
@@ -32,20 +30,33 @@ p {
 }
 
 
-.hidden {
-    display: none;
-}
-
 .Divwidth {
- float: left;
  margin: 0 15px 15px 0;
- height: 200px;
- width: 400px;
+ height: 100px;
+ width: 100%;
  text-align: center;
  outline: 1px solid black;
 }
 
-.quest-chars {
+.Divwidth1 {
+ margin: 0 15px 15px 0;
+ height: 450px;
+ width: 300px;
+ text-align: center;
+ outline: 1px solid black;
+}
+
+.Divwidth2 {
+ margin: 0 15px 15px 0;
+ height: 450px;
+ width: 450px;
+ text-align: center;
+ outline: 1px solid black;
+}
+
+.DivFlex {
+    height: 450px;
+    width: 750px;
     text-align: center;
     text-color: #f5f5f5;
     display: flex;

@@ -10,5 +10,6 @@ import org.webproject.entity.UsersCharEntity;
 public interface UsersCharRepository extends CrudRepository <UsersCharEntity, Integer> {
 
    Iterable<UsersCharEntity> findAllByUser(UserEntity userEntity);
+   UsersCharEntity findByCharname(String charname);
 
 }

@@ -3,19 +3,35 @@ body {
         background-color: #31415b;
      }
 
-     h2 {
-     height: 100px;
+     h1 {
+     height: 75px;
      color: #f5f5f5;
      text-align: center;
-     }
-
-     tr {
-     color: #f5f5f5;
      }
 
 h {
 color: #f5f5f5;
 }
+
+          td{
+           text-align: center;
+           outline: 1px solid black;
+            width: 130px;
+            height: 75px;
+            text-align: center;
+            color: #f5f5f5;
+          }
+
+
+          th {
+          height: 75px;
+          width: 130px;
+          outline: 1px solid black;
+          text-align: center;
+          color: #f5f5f5;
+          }
+
+
 
 p {
      color: #f5f5f5;
@@ -31,10 +47,6 @@ p {
     height: 100%;
 }
 
-
-.hidden {
-    display: none;
-}
 
 .Divwidth {
  float: left;
@@ -59,4 +71,12 @@ p {
     border: 1px solid #cecece;
     border-radius: 7px;
     margin: 5px 0 5px 0;
+}
+
+.div-head{
+width: 100%;
+}
+
+.dev-exit{
+float: left;
 }

@@ -5,7 +5,7 @@
 <head>
     <link href="../static/lib/bootstrap-reboot.min.css" th:href="@{/lib/bootstrap-reboot.min.css}" rel="stylesheet" />
     <link href="../static/lib/bootstrap.min.css" th:href="@{/lib/bootstrap.min.css}" rel="stylesheet" />
-    <link href="../static/css/char.css" th:href="@{/css/char.css}" rel="stylesheet" />
+    <link href="../static/css/userchars.css" th:href="@{/css/userchars.css}" rel="stylesheet" />
     <link href="../static/img/bonfire.jpg" />
 
 </head>
@@ -13,15 +13,18 @@
 
 <body>
 
-<div>
-    <form action="/chars" method="get">
-        <button class="btn btn-outline-primary">Создать персонажа</button>
-    </form>
+<div class="div-head">
+    <div>
+        <form align="right" action="/logout" method="get">
+            <button class="btn btn-outline-primary">Выход</button>
+        </form>
+    </div>
+    <div class="dev-exit">
 
-    <form align="right" action="/logout" method="get">
-        <button class="btn btn-outline-primary">Выход</button>
-    </form>
-    
+        <form action="/chars" method="get">
+            <button class="btn btn-outline-primary">Создать персонажа</button>
+        </form>
+    </div>
 </div>
 
 <div>
@@ -36,7 +39,7 @@
         </tr>
         </thead>
         <tbody>
-        <form>
+
         <tr th:each="char : ${users}">
             <td th:text="${char.charclass}"></td>
             <td th:text="${char.charname}"></td>
@@ -44,13 +47,29 @@
             <td th:text="${char.dmgchar}"></td>
 
             <td>
+                <form action="/startgame">
+
             <label type="hidden" for="charId"></label>
             <input  type="hidden" id="charId" name="charId" th:value="${char.id}" />
 
             <button type="submit" class="btn btn-outline-primary">Выбрать</button>
+
+                 </form>
+
             </td>
+
+            <td>
+            <form action="/userchars" method="post">
+
+                    <label type="hidden" for="charName"></label>
+                    <input  type="hidden" id="charName" name="charName" th:value="${char.charname}" />
+
+                    <button type="submit" class="btn btn-outline-primary">Удалить</button>
+            </form>
+            </td>
+
+
         </tr>
-        </form>
         </tbody>
     </table>
 </div>

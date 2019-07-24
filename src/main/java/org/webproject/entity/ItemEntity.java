@@ -13,7 +13,6 @@ import javax.persistence.Id;
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity(name = "game_items")
 public class ItemEntity {
 
@@ -25,4 +24,8 @@ public class ItemEntity {
     Integer addHp;
     Integer addDmg;
     Boolean resultAction;
+
+    public ItemEntity(){
+        this.resultAction = true;
+    }
 }

@@ -8,6 +8,9 @@
     <link href="../static/css/char.css" th:href="@{/css/char.css}" rel="stylesheet" />
     <link href="../static/img/bonfire.jpg" />
 
+    <script th:src="@{/lib/jquery-3.4.1.min.js}" src="../static/lib/jquery-3.4.1.min.js" ></script>
+    <script th:src="@{/js/chars.js}" src="../static/js/chars.js" ></script>
+
 </head>
 
 
@@ -17,22 +20,34 @@
 <h2>Кто ты?</h2>
 </div>
 
-<div>
+
 <ul th:each="char : ${users}">
 
 <form  class="Divwidth"  action="/chars" method="post" th:object="${char}">
+
+    <div>
+
     <h2 th:text="${char.name}"></h2>
+        <h th:text="${char.hp}"></h><br>
+        <h th:text="${char.dmg}"></h><br>
+
+
+
     <!--<p th:text="${char.name}"></p>-->
 
-    <label type="hidden" for="charId"></label>
-    <input  type="hidden" id="charId" name="charId" th:value="${char.id}" />
+            <label type="hidden" for="charId"></label>
+            <input  type="hidden" id="charId" name="charId" th:value="${char.id}" />
 
-    <label for="charName">Ваше Имя</label>
-    <input id="charName"  name="charName" />
+            <label for="charName">Ваше Имя</label>
+            <input id="charName"  name="charName" />
 
-    <button type="submit" class="btn btn-outline-primary">Выбрать</button>
+            <button type="submit" class="btn btn-outline-primary">Выбрать</button>
+
+
+
+    </div>t
     </form>
 </ul>
-</div>
+
 
 </body>

@@ -2,11 +2,10 @@ package org.webproject.service.impl;
 
 
 
-import org.springframework.web.bind.annotation.CookieValue;
 import org.webproject.dto.UserSession;
 import org.webproject.entity.AuthSessionEntity;
 import org.webproject.entity.UserEntity;
-import org.webproject.exeption.ChatException;
+import org.webproject.exeption.QuestException;
 import org.webproject.repository.AuthorizationSessionRepository;
 import org.webproject.repository.UserRepository;
 import org.webproject.service.AuthorizationSessionService;
@@ -70,14 +69,14 @@ public class AuthorizationSessionServiceImpl implements AuthorizationSessionServ
     public String findLoginBySessionId(String sid) {
         return authSessionRepository.findBySid(sid)
                 .map(entity -> entity.getUser().getLogin())
-                .orElseThrow(ChatException::new);
+                .orElseThrow(QuestException::new);
     }
 
     @Override
     public Integer findUserIdBySessionId(String sid) {
         return authSessionRepository.findBySid(sid)
                 .map(entity -> entity.getUser().getId())
-                .orElseThrow(ChatException::new);
+                .orElseThrow(QuestException::new);
     }
 
     @Override
